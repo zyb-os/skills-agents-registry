@@ -1,0 +1,3596 @@
+{
+  "version": "1.4.0",
+  "updated_at": "2026-04-26T00:00:00Z",
+  "registry_url": "https://zybos-registry.web.app",
+  "servers": [
+    {
+      "id": "brave-search",
+      "name": "Brave Search",
+      "description": "Web and local search using the Brave Search API. Returns organic results, news, and local listings.",
+      "capabilities": [
+        "brave_web_search",
+        "brave_local_search"
+      ],
+      "category": "search",
+      "tags": [
+        "search",
+        "web",
+        "brave",
+        "news"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-brave-search",
+        "args": [],
+        "env_required": [
+          {
+            "key": "BRAVE_API_KEY",
+            "description": "Brave Search API key — get one free at https://api.search.brave.com"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "fetch",
+      "name": "Fetch",
+      "description": "Fetch any URL and return its content as markdown or raw HTML. Useful for reading web pages, APIs, and documentation.",
+      "capabilities": [
+        "fetch_url",
+        "fetch_raw"
+      ],
+      "category": "web",
+      "tags": [
+        "http",
+        "web",
+        "fetch",
+        "url",
+        "scrape",
+        "html"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-fetch",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "USER_AGENT",
+            "description": "Custom User-Agent string for HTTP requests"
+          }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "filesystem",
+      "name": "Filesystem",
+      "description": "Read, write, move, search and manage local files and directories. Sandboxed to allowed paths.",
+      "capabilities": [
+        "read_file",
+        "read_multiple_files",
+        "write_file",
+        "edit_file",
+        "create_directory",
+        "list_directory",
+        "directory_tree",
+        "move_file",
+        "search_files",
+        "get_file_info",
+        "list_allowed_directories"
+      ],
+      "category": "utilities",
+      "tags": [
+        "filesystem",
+        "files",
+        "local",
+        "read",
+        "write",
+        "directory"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-filesystem",
+        "args": [
+          "$ALLOWED_DIRECTORY"
+        ],
+        "env_required": [
+          {
+            "key": "ALLOWED_DIRECTORY",
+            "description": "Absolute path of directory the server may access"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "description": "Read and manipulate local Git repositories — log, diff, blame, branches, commits, and status.",
+      "capabilities": [
+        "git_status",
+        "git_diff",
+        "git_log",
+        "git_show",
+        "git_blame",
+        "git_branch",
+        "git_checkout",
+        "git_commit"
+      ],
+      "category": "development",
+      "tags": [
+        "git",
+        "version-control",
+        "commits",
+        "diff",
+        "repository"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-git",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "GIT_REPO_PATH",
+            "description": "Default repository path"
+          }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "description": "Interact with GitHub repositories — search code, manage issues, pull requests, files, and branches via the GitHub API.",
+      "capabilities": [
+        "github_search_repos",
+        "github_search_code",
+        "github_create_issue",
+        "github_list_issues",
+        "github_get_pr",
+        "github_create_pr",
+        "github_read_file",
+        "github_push_files",
+        "github_list_commits"
+      ],
+      "category": "development",
+      "tags": [
+        "github",
+        "git",
+        "code",
+        "issues",
+        "pr",
+        "repository",
+        "developer"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-github",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+            "description": "GitHub personal access token with repo scope"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/github",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "gitlab",
+      "name": "GitLab",
+      "description": "Interact with GitLab projects — manage issues, merge requests, files, pipelines, and repositories.",
+      "capabilities": [
+        "gitlab_create_issue",
+        "gitlab_list_issues",
+        "gitlab_create_mr",
+        "gitlab_get_file",
+        "gitlab_push_files",
+        "gitlab_list_projects"
+      ],
+      "category": "development",
+      "tags": [
+        "gitlab",
+        "git",
+        "code",
+        "issues",
+        "ci",
+        "repository"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-gitlab",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GITLAB_PERSONAL_ACCESS_TOKEN",
+            "description": "GitLab personal access token"
+          },
+          {
+            "key": "GITLAB_API_URL",
+            "description": "GitLab instance URL (default: https://gitlab.com)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "description": "Query Sentry for errors, issues, events, releases, and project stats. Useful for debugging and monitoring.",
+      "capabilities": [
+        "sentry_list_issues",
+        "sentry_get_issue",
+        "sentry_list_events",
+        "sentry_get_event",
+        "sentry_list_projects",
+        "sentry_list_releases"
+      ],
+      "category": "development",
+      "tags": [
+        "sentry",
+        "errors",
+        "monitoring",
+        "debugging",
+        "observability"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-sentry",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SENTRY_AUTH_TOKEN",
+            "description": "Sentry auth token (Settings → API → Auth Tokens)"
+          },
+          {
+            "key": "SENTRY_ORG_SLUG",
+            "description": "Your Sentry organisation slug"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "SENTRY_URL",
+            "description": "Self-hosted Sentry URL (default: https://sentry.io)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sentry",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright",
+      "description": "Full browser automation via Microsoft Playwright — navigate, click, fill, screenshot, extract content, run JS.",
+      "capabilities": [
+        "playwright_navigate",
+        "playwright_click",
+        "playwright_fill",
+        "playwright_screenshot",
+        "playwright_evaluate",
+        "playwright_select",
+        "playwright_wait_for_selector",
+        "playwright_get_text"
+      ],
+      "category": "browser",
+      "tags": [
+        "browser",
+        "playwright",
+        "automation",
+        "screenshot",
+        "scrape",
+        "microsoft"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@playwright/mcp",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "PLAYWRIGHT_HEADLESS",
+            "description": "Run browser headless (default: true)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/microsoft/playwright-mcp",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "puppeteer",
+      "name": "Puppeteer",
+      "description": "Browser automation — navigate pages, take screenshots, click elements, fill forms, evaluate JavaScript.",
+      "capabilities": [
+        "puppeteer_navigate",
+        "puppeteer_screenshot",
+        "puppeteer_click",
+        "puppeteer_fill",
+        "puppeteer_evaluate",
+        "puppeteer_select",
+        "puppeteer_hover",
+        "puppeteer_new_tab"
+      ],
+      "category": "browser",
+      "tags": [
+        "browser",
+        "puppeteer",
+        "automation",
+        "screenshot",
+        "scrape",
+        "navigate"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-puppeteer",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "PUPPETEER_LAUNCH_OPTIONS",
+            "description": "JSON launch options (e.g. {\"headless\":true})"
+          }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "google-maps",
+      "name": "Google Maps",
+      "description": "Geocoding, reverse geocoding, directions, place search, elevation, and distance matrix via the Google Maps API.",
+      "capabilities": [
+        "maps_geocode",
+        "maps_reverse_geocode",
+        "maps_search_places",
+        "maps_directions",
+        "maps_elevation",
+        "maps_distance_matrix"
+      ],
+      "category": "location",
+      "tags": [
+        "maps",
+        "geocoding",
+        "directions",
+        "places",
+        "google",
+        "location",
+        "navigation"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-google-maps",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GOOGLE_MAPS_API_KEY",
+            "description": "Google Maps Platform API key"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "gdrive",
+      "name": "Google Drive",
+      "description": "Search, read, list, and export files from Google Drive including Docs, Sheets, and Slides.",
+      "capabilities": [
+        "gdrive_search",
+        "gdrive_read_file",
+        "gdrive_list_files",
+        "gdrive_create_file",
+        "gdrive_update_file",
+        "gdrive_export"
+      ],
+      "category": "productivity",
+      "tags": [
+        "google",
+        "drive",
+        "documents",
+        "files",
+        "cloud",
+        "storage"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-gdrive",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GDRIVE_CLIENT_ID",
+            "description": "Google OAuth2 client ID"
+          },
+          {
+            "key": "GDRIVE_CLIENT_SECRET",
+            "description": "Google OAuth2 client secret"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "description": "Read and write Notion pages, databases, blocks, and comments. Official Notion MCP integration.",
+      "capabilities": [
+        "notion_search",
+        "notion_get_page",
+        "notion_create_page",
+        "notion_update_page",
+        "notion_get_database",
+        "notion_query_database",
+        "notion_append_block",
+        "notion_add_comment"
+      ],
+      "category": "productivity",
+      "tags": [
+        "notion",
+        "notes",
+        "wiki",
+        "database",
+        "pages",
+        "productivity"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@notionhq/notion-mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "NOTION_API_KEY",
+            "description": "Notion integration token (notion.so/my-integrations)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/makenotion/notion-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "description": "Post messages, reply to threads, list channels, and retrieve Slack conversation history.",
+      "capabilities": [
+        "slack_post_message",
+        "slack_reply_to_thread",
+        "slack_list_channels",
+        "slack_get_channel_history",
+        "slack_get_thread_replies",
+        "slack_get_users"
+      ],
+      "category": "communication",
+      "tags": [
+        "slack",
+        "messaging",
+        "chat",
+        "notification",
+        "team"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-slack",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SLACK_BOT_TOKEN",
+            "description": "Slack Bot OAuth token (xoxb-...)"
+          },
+          {
+            "key": "SLACK_TEAM_ID",
+            "description": "Slack workspace team ID"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/slack",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "description": "Send messages, manage channels, read message history, and interact with Discord servers via the bot API.",
+      "capabilities": [
+        "discord_send_message",
+        "discord_get_messages",
+        "discord_list_channels",
+        "discord_create_channel",
+        "discord_get_server_info",
+        "discord_add_reaction"
+      ],
+      "category": "communication",
+      "tags": [
+        "discord",
+        "chat",
+        "messaging",
+        "gaming",
+        "community"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-discord",
+        "args": [],
+        "env_required": [
+          {
+            "key": "DISCORD_BOT_TOKEN",
+            "description": "Discord bot token (discord.com/developers)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/v-3/discordmcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "description": "Manage Linear issues, projects, cycles, and teams. Create, update, and search issues programmatically.",
+      "capabilities": [
+        "linear_get_issues",
+        "linear_create_issue",
+        "linear_update_issue",
+        "linear_get_projects",
+        "linear_get_teams",
+        "linear_search_issues",
+        "linear_get_cycles"
+      ],
+      "category": "productivity",
+      "tags": [
+        "linear",
+        "issues",
+        "project-management",
+        "engineering",
+        "tasks"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-linear",
+        "args": [],
+        "env_required": [
+          {
+            "key": "LINEAR_API_KEY",
+            "description": "Linear API key (linear.app/settings/api)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/jerhadf/linear-mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "jira",
+      "name": "Jira & Confluence (Atlassian)",
+      "description": "Read and write Jira issues, projects, sprints, and Confluence pages via the Atlassian REST API.",
+      "capabilities": [
+        "jira_get_issue",
+        "jira_create_issue",
+        "jira_update_issue",
+        "jira_search_issues",
+        "jira_get_project",
+        "jira_list_projects",
+        "confluence_get_page",
+        "confluence_search"
+      ],
+      "category": "productivity",
+      "tags": [
+        "jira",
+        "confluence",
+        "atlassian",
+        "project-management",
+        "agile",
+        "tickets"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-atlassian",
+        "args": [],
+        "env_required": [
+          {
+            "key": "JIRA_URL",
+            "description": "Your Jira instance URL (e.g. https://yourcompany.atlassian.net)"
+          },
+          {
+            "key": "JIRA_EMAIL",
+            "description": "Atlassian account email"
+          },
+          {
+            "key": "JIRA_API_TOKEN",
+            "description": "Atlassian API token (id.atlassian.com/manage-profile/security/api-tokens)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/sooperset/mcp-atlassian",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "description": "Interact with Stripe — query customers, payments, subscriptions, invoices, and products via the Stripe API.",
+      "capabilities": [
+        "stripe_list_customers",
+        "stripe_get_customer",
+        "stripe_list_payments",
+        "stripe_get_payment",
+        "stripe_list_subscriptions",
+        "stripe_list_products",
+        "stripe_create_payment_link",
+        "stripe_list_invoices"
+      ],
+      "category": "payments",
+      "tags": [
+        "stripe",
+        "payments",
+        "billing",
+        "subscriptions",
+        "finance",
+        "ecommerce"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@stripe/agent-toolkit",
+        "args": [],
+        "env_required": [
+          {
+            "key": "STRIPE_SECRET_KEY",
+            "description": "Stripe secret key (sk_live_... or sk_test_...)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/stripe/agent-toolkit",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "description": "Read-only and read-write access to a PostgreSQL database. Run queries, list schemas, describe tables.",
+      "capabilities": [
+        "postgres_query",
+        "postgres_list_tables",
+        "postgres_describe_table",
+        "postgres_list_schemas"
+      ],
+      "category": "database",
+      "tags": [
+        "postgres",
+        "postgresql",
+        "sql",
+        "database",
+        "query"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-postgres",
+        "args": [
+          "$POSTGRES_CONNECTION_STRING"
+        ],
+        "env_required": [
+          {
+            "key": "POSTGRES_CONNECTION_STRING",
+            "description": "PostgreSQL connection string (e.g. postgresql://user:pass@host/db)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "sqlite",
+      "name": "SQLite",
+      "description": "Create and query SQLite databases. Run SQL queries, inspect schemas, and build business intelligence tools.",
+      "capabilities": [
+        "sqlite_query",
+        "sqlite_execute",
+        "sqlite_list_tables",
+        "sqlite_describe_table",
+        "sqlite_create_table"
+      ],
+      "category": "database",
+      "tags": [
+        "sqlite",
+        "sql",
+        "database",
+        "local",
+        "query",
+        "analytics"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-sqlite",
+        "args": [
+          "--db-path",
+          "$SQLITE_DB_PATH"
+        ],
+        "env_required": [
+          {
+            "key": "SQLITE_DB_PATH",
+            "description": "Absolute path to the SQLite .db file"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL",
+      "description": "Connect to MySQL/MariaDB databases, run queries, list tables, describe schemas, and execute DDL/DML.",
+      "capabilities": [
+        "mysql_query",
+        "mysql_execute",
+        "mysql_list_tables",
+        "mysql_describe_table",
+        "mysql_list_databases"
+      ],
+      "category": "database",
+      "tags": [
+        "mysql",
+        "mariadb",
+        "sql",
+        "database",
+        "query"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-mysql",
+        "args": [],
+        "env_required": [
+          {
+            "key": "MYSQL_HOST",
+            "description": "MySQL server hostname"
+          },
+          {
+            "key": "MYSQL_USER",
+            "description": "MySQL username"
+          },
+          {
+            "key": "MYSQL_PASSWORD",
+            "description": "MySQL password"
+          },
+          {
+            "key": "MYSQL_DATABASE",
+            "description": "Default database name"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/benborla/mcp-server-mysql",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "description": "Query and manage MongoDB collections — find, insert, update, delete, aggregate, and manage indexes.",
+      "capabilities": [
+        "mongodb_find",
+        "mongodb_insert",
+        "mongodb_update",
+        "mongodb_delete",
+        "mongodb_aggregate",
+        "mongodb_list_collections",
+        "mongodb_create_index"
+      ],
+      "category": "database",
+      "tags": [
+        "mongodb",
+        "nosql",
+        "database",
+        "document",
+        "atlas"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mongodb-mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "MONGODB_CONNECTION_STRING",
+            "description": "MongoDB connection string (mongodb://... or mongodb+srv://...)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/mongodb-js/mongodb-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "description": "Interact with Redis — get/set keys, manage hashes, lists, sets, streams, and pub/sub channels.",
+      "capabilities": [
+        "redis_get",
+        "redis_set",
+        "redis_delete",
+        "redis_keys",
+        "redis_hget",
+        "redis_hset",
+        "redis_lpush",
+        "redis_rpop",
+        "redis_publish",
+        "redis_subscribe",
+        "redis_expire"
+      ],
+      "category": "database",
+      "tags": [
+        "redis",
+        "cache",
+        "key-value",
+        "pubsub",
+        "queue"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-redis",
+        "args": [],
+        "env_required": [
+          {
+            "key": "REDIS_URL",
+            "description": "Redis connection URL (e.g. redis://localhost:6379)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/redis",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "description": "Query Supabase tables, run SQL, manage auth users, storage buckets, edge functions, and realtime channels.",
+      "capabilities": [
+        "supabase_query",
+        "supabase_insert",
+        "supabase_update",
+        "supabase_delete",
+        "supabase_rpc",
+        "supabase_list_tables",
+        "supabase_storage_list",
+        "supabase_storage_download"
+      ],
+      "category": "database",
+      "tags": [
+        "supabase",
+        "postgres",
+        "database",
+        "auth",
+        "storage",
+        "backend"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@supabase/mcp-server-supabase",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SUPABASE_URL",
+            "description": "Your Supabase project URL (https://xxx.supabase.co)"
+          },
+          {
+            "key": "SUPABASE_SERVICE_ROLE_KEY",
+            "description": "Service role key from Project Settings → API"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/supabase-community/supabase-mcp",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "description": "Manage Cloudflare Workers, KV, D1, R2, and DNS records. Deploy and query Workers from the command line.",
+      "capabilities": [
+        "cloudflare_list_workers",
+        "cloudflare_deploy_worker",
+        "cloudflare_kv_get",
+        "cloudflare_kv_put",
+        "cloudflare_kv_list",
+        "cloudflare_d1_query",
+        "cloudflare_r2_list",
+        "cloudflare_dns_list"
+      ],
+      "category": "cloud",
+      "tags": [
+        "cloudflare",
+        "workers",
+        "kv",
+        "d1",
+        "r2",
+        "cdn",
+        "serverless"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@cloudflare/mcp-server-cloudflare",
+        "args": [],
+        "env_required": [
+          {
+            "key": "CLOUDFLARE_API_TOKEN",
+            "description": "Cloudflare API token (dash.cloudflare.com/profile/api-tokens)"
+          },
+          {
+            "key": "CLOUDFLARE_ACCOUNT_ID",
+            "description": "Cloudflare account ID"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/cloudflare/mcp-server-cloudflare",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "aws-kb-retrieval",
+      "name": "AWS Knowledge Base (Bedrock)",
+      "description": "Retrieve and query Amazon Bedrock Knowledge Bases using RAG for enterprise document search.",
+      "capabilities": [
+        "aws_kb_retrieve",
+        "aws_kb_retrieve_and_generate"
+      ],
+      "category": "cloud",
+      "tags": [
+        "aws",
+        "bedrock",
+        "rag",
+        "knowledge-base",
+        "retrieval",
+        "amazon"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-aws-kb-retrieval",
+        "args": [],
+        "env_required": [
+          {
+            "key": "AWS_ACCESS_KEY_ID",
+            "description": "AWS access key ID"
+          },
+          {
+            "key": "AWS_SECRET_ACCESS_KEY",
+            "description": "AWS secret access key"
+          },
+          {
+            "key": "AWS_REGION",
+            "description": "AWS region (e.g. us-east-1)"
+          },
+          {
+            "key": "AWS_KB_ID",
+            "description": "Bedrock Knowledge Base ID"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/aws-kb-retrieval",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "description": "Manage HubSpot CRM — contacts, companies, deals, tickets, properties, and timeline events.",
+      "capabilities": [
+        "hubspot_get_contacts",
+        "hubspot_create_contact",
+        "hubspot_update_contact",
+        "hubspot_get_companies",
+        "hubspot_get_deals",
+        "hubspot_create_deal",
+        "hubspot_search_crm",
+        "hubspot_get_tickets"
+      ],
+      "category": "crm",
+      "tags": [
+        "hubspot",
+        "crm",
+        "sales",
+        "marketing",
+        "contacts",
+        "deals"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@hubspot/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "HUBSPOT_ACCESS_TOKEN",
+            "description": "HubSpot private app access token"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/HubSpot/hubspot-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "description": "Manage Shopify stores — products, orders, customers, inventory, and collections via the Admin API.",
+      "capabilities": [
+        "shopify_list_products",
+        "shopify_get_product",
+        "shopify_update_product",
+        "shopify_list_orders",
+        "shopify_get_order",
+        "shopify_list_customers",
+        "shopify_get_inventory",
+        "shopify_list_collections"
+      ],
+      "category": "ecommerce",
+      "tags": [
+        "shopify",
+        "ecommerce",
+        "products",
+        "orders",
+        "inventory",
+        "store"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "shopify-mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SHOPIFY_ACCESS_TOKEN",
+            "description": "Shopify Admin API access token"
+          },
+          {
+            "key": "MYSHOPIFY_DOMAIN",
+            "description": "Your store domain (e.g. mystore.myshopify.com)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Shopify/dev-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "airtable",
+      "name": "Airtable",
+      "description": "Read, create, update, and delete Airtable records. List bases, tables, and fields. Run formula queries.",
+      "capabilities": [
+        "airtable_list_bases",
+        "airtable_list_tables",
+        "airtable_list_records",
+        "airtable_get_record",
+        "airtable_create_records",
+        "airtable_update_records",
+        "airtable_delete_records",
+        "airtable_search_records"
+      ],
+      "category": "productivity",
+      "tags": [
+        "airtable",
+        "spreadsheet",
+        "database",
+        "no-code",
+        "records"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@airtable/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "AIRTABLE_PERSONAL_ACCESS_TOKEN",
+            "description": "Airtable personal access token (airtable.com/create/tokens)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Airtable/mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "description": "Read, send, search, and manage Gmail messages, threads, labels, and attachments.",
+      "capabilities": [
+        "gmail_list_messages",
+        "gmail_get_message",
+        "gmail_send_message",
+        "gmail_search_messages",
+        "gmail_list_labels",
+        "gmail_create_draft",
+        "gmail_reply_to_message",
+        "gmail_trash_message"
+      ],
+      "category": "communication",
+      "tags": [
+        "gmail",
+        "email",
+        "google",
+        "inbox",
+        "messages"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-gmail",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GMAIL_CLIENT_ID",
+            "description": "Google OAuth2 client ID"
+          },
+          {
+            "key": "GMAIL_CLIENT_SECRET",
+            "description": "Google OAuth2 client secret"
+          },
+          {
+            "key": "GMAIL_REFRESH_TOKEN",
+            "description": "OAuth2 refresh token"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/gokhanarman/mcp-gmail",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "google-calendar",
+      "name": "Google Calendar",
+      "description": "Create, read, update, and delete Google Calendar events. List calendars and manage attendees.",
+      "capabilities": [
+        "calendar_list_events",
+        "calendar_get_event",
+        "calendar_create_event",
+        "calendar_update_event",
+        "calendar_delete_event",
+        "calendar_list_calendars",
+        "calendar_check_availability"
+      ],
+      "category": "productivity",
+      "tags": [
+        "google",
+        "calendar",
+        "events",
+        "scheduling",
+        "meetings"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@google-labs/calendar-mcp",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GOOGLE_CLIENT_ID",
+            "description": "Google OAuth2 client ID"
+          },
+          {
+            "key": "GOOGLE_CLIENT_SECRET",
+            "description": "Google OAuth2 client secret"
+          },
+          {
+            "key": "GOOGLE_REFRESH_TOKEN",
+            "description": "OAuth2 refresh token with calendar scope"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/nspilman/mcp-google-calendar",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "description": "Manage Vercel deployments, projects, domains, environment variables, and logs via the Vercel API.",
+      "capabilities": [
+        "vercel_list_deployments",
+        "vercel_get_deployment",
+        "vercel_list_projects",
+        "vercel_get_project",
+        "vercel_list_domains",
+        "vercel_get_deployment_logs",
+        "vercel_list_env_vars",
+        "vercel_cancel_deployment"
+      ],
+      "category": "cloud",
+      "tags": [
+        "vercel",
+        "deployments",
+        "hosting",
+        "serverless",
+        "next.js"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@vercel/mcp-adapter",
+        "args": [],
+        "env_required": [
+          {
+            "key": "VERCEL_TOKEN",
+            "description": "Vercel API token (vercel.com/account/tokens)"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "VERCEL_TEAM_ID",
+            "description": "Team ID for team-scoped operations"
+          }
+        ]
+      },
+      "source_url": "https://github.com/vercel/mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "description": "Manage Docker containers, images, volumes, and networks. Run, stop, inspect, and exec into containers.",
+      "capabilities": [
+        "docker_list_containers",
+        "docker_run_container",
+        "docker_stop_container",
+        "docker_exec",
+        "docker_list_images",
+        "docker_pull_image",
+        "docker_logs",
+        "docker_inspect",
+        "docker_list_volumes"
+      ],
+      "category": "infrastructure",
+      "tags": [
+        "docker",
+        "containers",
+        "devops",
+        "infrastructure",
+        "deployment"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-docker",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "DOCKER_HOST",
+            "description": "Docker daemon socket (default: unix:///var/run/docker.sock)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/ckreiling/mcp-server-docker",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "description": "Manage Kubernetes clusters — list and describe pods, deployments, services, logs, and apply manifests.",
+      "capabilities": [
+        "k8s_list_pods",
+        "k8s_get_pod",
+        "k8s_pod_logs",
+        "k8s_list_deployments",
+        "k8s_list_services",
+        "k8s_list_namespaces",
+        "k8s_apply_manifest",
+        "k8s_delete_resource"
+      ],
+      "category": "infrastructure",
+      "tags": [
+        "kubernetes",
+        "k8s",
+        "containers",
+        "devops",
+        "clusters"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-kubernetes",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "KUBECONFIG",
+            "description": "Path to kubeconfig file (default: ~/.kube/config)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/Flux159/mcp-server-kubernetes",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "description": "Interact with AWS services — S3, EC2, Lambda, CloudWatch, DynamoDB, SQS, and more via the AWS SDK.",
+      "capabilities": [
+        "aws_s3_list",
+        "aws_s3_get",
+        "aws_s3_put",
+        "aws_ec2_list_instances",
+        "aws_lambda_list",
+        "aws_lambda_invoke",
+        "aws_cloudwatch_logs",
+        "aws_dynamodb_query",
+        "aws_sqs_send"
+      ],
+      "category": "cloud",
+      "tags": [
+        "aws",
+        "s3",
+        "ec2",
+        "lambda",
+        "cloud",
+        "amazon"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "aws-mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "AWS_ACCESS_KEY_ID",
+            "description": "AWS access key ID"
+          },
+          {
+            "key": "AWS_SECRET_ACCESS_KEY",
+            "description": "AWS secret access key"
+          },
+          {
+            "key": "AWS_REGION",
+            "description": "Default AWS region (e.g. us-east-1)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/aws-samples/aws-mcp-servers-samples",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "description": "Inspect Figma files, frames, components, and design tokens. Extract styles, assets, and layout properties.",
+      "capabilities": [
+        "figma_get_file",
+        "figma_get_node",
+        "figma_list_components",
+        "figma_get_styles",
+        "figma_get_comments",
+        "figma_list_projects",
+        "figma_export_image"
+      ],
+      "category": "design",
+      "tags": [
+        "figma",
+        "design",
+        "ui",
+        "components",
+        "assets",
+        "prototyping"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "figma-mcp",
+        "args": [],
+        "env_required": [
+          {
+            "key": "FIGMA_ACCESS_TOKEN",
+            "description": "Figma personal access token (figma.com/settings)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/GLips/Figma-Context-MCP",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "twilio",
+      "name": "Twilio",
+      "description": "Send SMS, WhatsApp messages, make voice calls, and manage Twilio phone numbers and conversations.",
+      "capabilities": [
+        "twilio_send_sms",
+        "twilio_send_whatsapp",
+        "twilio_list_messages",
+        "twilio_list_calls",
+        "twilio_list_phone_numbers",
+        "twilio_create_call"
+      ],
+      "category": "communication",
+      "tags": [
+        "twilio",
+        "sms",
+        "whatsapp",
+        "voice",
+        "messaging",
+        "phone"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-twilio",
+        "args": [],
+        "env_required": [
+          {
+            "key": "TWILIO_ACCOUNT_SID",
+            "description": "Twilio Account SID (console.twilio.com)"
+          },
+          {
+            "key": "TWILIO_AUTH_TOKEN",
+            "description": "Twilio auth token"
+          },
+          {
+            "key": "TWILIO_FROM_NUMBER",
+            "description": "Your Twilio phone number (e.g. +15551234567)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "sendgrid",
+      "name": "SendGrid",
+      "description": "Send transactional and marketing emails, manage contacts and lists, query stats via the SendGrid API.",
+      "capabilities": [
+        "sendgrid_send_email",
+        "sendgrid_send_template",
+        "sendgrid_list_contacts",
+        "sendgrid_add_contact",
+        "sendgrid_get_stats",
+        "sendgrid_list_templates"
+      ],
+      "category": "communication",
+      "tags": [
+        "sendgrid",
+        "email",
+        "transactional",
+        "marketing",
+        "smtp"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-sendgrid",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SENDGRID_API_KEY",
+            "description": "SendGrid API key (app.sendgrid.com/settings/api_keys)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Lukas-Elias/sendgrid-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "asana",
+      "name": "Asana",
+      "description": "Manage Asana tasks, projects, teams, and workspaces. Create, update, search, and complete tasks.",
+      "capabilities": [
+        "asana_list_tasks",
+        "asana_get_task",
+        "asana_create_task",
+        "asana_update_task",
+        "asana_complete_task",
+        "asana_list_projects",
+        "asana_list_workspaces",
+        "asana_search_tasks"
+      ],
+      "category": "productivity",
+      "tags": [
+        "asana",
+        "tasks",
+        "project-management",
+        "team",
+        "productivity"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@asana/mcp",
+        "args": [],
+        "env_required": [
+          {
+            "key": "ASANA_ACCESS_TOKEN",
+            "description": "Asana personal access token (app.asana.com/0/my-apps)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Asana/asana-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "google-sheets",
+      "name": "Google Sheets",
+      "description": "Read and write Google Sheets — get values, update cells, append rows, create/format spreadsheets.",
+      "capabilities": [
+        "sheets_get_values",
+        "sheets_update_values",
+        "sheets_append_values",
+        "sheets_create_spreadsheet",
+        "sheets_list_spreadsheets",
+        "sheets_add_sheet",
+        "sheets_batch_update"
+      ],
+      "category": "productivity",
+      "tags": [
+        "google",
+        "sheets",
+        "spreadsheet",
+        "data",
+        "excel"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-google-sheets",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GOOGLE_CLIENT_ID",
+            "description": "Google OAuth2 client ID"
+          },
+          {
+            "key": "GOOGLE_CLIENT_SECRET",
+            "description": "Google OAuth2 client secret"
+          },
+          {
+            "key": "GOOGLE_REFRESH_TOKEN",
+            "description": "OAuth2 refresh token with sheets scope"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Dumpling0421/mcp-google-sheets",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "description": "Query and manage Pinecone vector indexes — upsert, query by vector, list namespaces, and delete vectors.",
+      "capabilities": [
+        "pinecone_upsert",
+        "pinecone_query",
+        "pinecone_delete",
+        "pinecone_list_indexes",
+        "pinecone_describe_index",
+        "pinecone_fetch_vectors",
+        "pinecone_list_namespaces"
+      ],
+      "category": "ai",
+      "tags": [
+        "pinecone",
+        "vector",
+        "embeddings",
+        "similarity",
+        "search",
+        "ai"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-pinecone",
+        "args": [],
+        "env_required": [
+          {
+            "key": "PINECONE_API_KEY",
+            "description": "Pinecone API key (app.pinecone.io/organizations)"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "PINECONE_INDEX_NAME",
+            "description": "Default index to query"
+          }
+        ]
+      },
+      "source_url": "https://github.com/sirmews/mcp-pinecone",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "description": "Index, search, and manage Elasticsearch documents. Full-text search, aggregations, and index management.",
+      "capabilities": [
+        "elasticsearch_search",
+        "elasticsearch_index_document",
+        "elasticsearch_get_document",
+        "elasticsearch_delete_document",
+        "elasticsearch_list_indices",
+        "elasticsearch_create_index",
+        "elasticsearch_aggregate"
+      ],
+      "category": "database",
+      "tags": [
+        "elasticsearch",
+        "search",
+        "fulltext",
+        "analytics",
+        "logging"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-elasticsearch",
+        "args": [],
+        "env_required": [
+          {
+            "key": "ELASTICSEARCH_URL",
+            "description": "Elasticsearch node URL (e.g. http://localhost:9200)"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "ELASTICSEARCH_API_KEY",
+            "description": "Elasticsearch API key for auth"
+          }
+        ]
+      },
+      "source_url": "https://github.com/elastic/mcp-server-elasticsearch",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "description": "Access OpenAI models — completions, embeddings, image generation (DALL-E), and assistants API.",
+      "capabilities": [
+        "openai_chat",
+        "openai_complete",
+        "openai_embed",
+        "openai_generate_image",
+        "openai_transcribe",
+        "openai_list_models",
+        "openai_create_assistant"
+      ],
+      "category": "ai",
+      "tags": [
+        "openai",
+        "gpt",
+        "llm",
+        "embeddings",
+        "dalle",
+        "ai"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-openai",
+        "args": [],
+        "env_required": [
+          {
+            "key": "OPENAI_API_KEY",
+            "description": "OpenAI API key (platform.openai.com/api-keys)"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "OPENAI_ORG_ID",
+            "description": "OpenAI organisation ID"
+          }
+        ]
+      },
+      "source_url": "https://github.com/mzxrai/mcp-openai",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "description": "Search YouTube videos, get transcripts/captions, retrieve channel info and video metadata.",
+      "capabilities": [
+        "youtube_search",
+        "youtube_get_transcript",
+        "youtube_get_video_info",
+        "youtube_list_channel_videos",
+        "youtube_get_channel_info",
+        "youtube_get_comments"
+      ],
+      "category": "media",
+      "tags": [
+        "youtube",
+        "video",
+        "transcripts",
+        "search",
+        "google"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-youtube-transcript",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "YOUTUBE_API_KEY",
+            "description": "YouTube Data API v3 key (required for search/metadata)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/kimtth/mcp-aoai-web-browsing",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "description": "Control Spotify playback, search tracks and albums, manage playlists, and get recommendations.",
+      "capabilities": [
+        "spotify_search",
+        "spotify_play",
+        "spotify_pause",
+        "spotify_next_track",
+        "spotify_get_current_track",
+        "spotify_list_playlists",
+        "spotify_add_to_playlist",
+        "spotify_get_recommendations"
+      ],
+      "category": "media",
+      "tags": [
+        "spotify",
+        "music",
+        "playback",
+        "playlists",
+        "audio"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-spotify",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SPOTIFY_CLIENT_ID",
+            "description": "Spotify app client ID (developer.spotify.com)"
+          },
+          {
+            "key": "SPOTIFY_CLIENT_SECRET",
+            "description": "Spotify app client secret"
+          },
+          {
+            "key": "SPOTIFY_REDIRECT_URI",
+            "description": "OAuth redirect URI registered in your Spotify app"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/varunneal/spotify-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "twitter",
+      "name": "X / Twitter",
+      "description": "Post tweets, read timelines, search tweets, manage DMs and lists via the X/Twitter API v2.",
+      "capabilities": [
+        "twitter_post_tweet",
+        "twitter_get_timeline",
+        "twitter_search_tweets",
+        "twitter_get_user",
+        "twitter_list_followers",
+        "twitter_send_dm",
+        "twitter_like_tweet",
+        "twitter_retweet"
+      ],
+      "category": "social",
+      "tags": [
+        "twitter",
+        "x",
+        "social",
+        "tweets",
+        "posts"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-twitter",
+        "args": [],
+        "env_required": [
+          {
+            "key": "TWITTER_API_KEY",
+            "description": "X/Twitter API key"
+          },
+          {
+            "key": "TWITTER_API_SECRET",
+            "description": "X/Twitter API secret"
+          },
+          {
+            "key": "TWITTER_ACCESS_TOKEN",
+            "description": "OAuth access token"
+          },
+          {
+            "key": "TWITTER_ACCESS_SECRET",
+            "description": "OAuth access token secret"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/EnesCinr/twitter-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "memory",
+      "name": "Memory (Knowledge Graph)",
+      "description": "Persistent knowledge graph memory. Create entities, store relations, and query structured facts across sessions.",
+      "capabilities": [
+        "memory_create_entities",
+        "memory_create_relations",
+        "memory_search_nodes",
+        "memory_read_graph",
+        "memory_add_observations",
+        "memory_delete_entities"
+      ],
+      "category": "memory",
+      "tags": [
+        "memory",
+        "knowledge",
+        "graph",
+        "entities",
+        "relations",
+        "persistent"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-memory",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "MEMORY_FILE_PATH",
+            "description": "Path to the knowledge graph JSON file (default: in-memory)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "sequential-thinking",
+      "name": "Sequential Thinking",
+      "description": "Structured multi-step reasoning tool. Breaks complex problems into sequential thoughts with revision support.",
+      "capabilities": [
+        "sequential_thinking"
+      ],
+      "category": "reasoning",
+      "tags": [
+        "reasoning",
+        "thinking",
+        "chain-of-thought",
+        "planning",
+        "analysis"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-sequential-thinking",
+        "args": [],
+        "env_required": [],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "time",
+      "name": "Time",
+      "description": "Get current time in any timezone, convert between timezones, and format timestamps.",
+      "capabilities": [
+        "get_current_time",
+        "convert_timezone"
+      ],
+      "category": "utilities",
+      "tags": [
+        "time",
+        "timezone",
+        "clock",
+        "convert",
+        "datetime"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-time",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "LOCAL_TIMEZONE",
+            "description": "Default local timezone (e.g. America/New_York)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "openweather",
+      "name": "OpenWeather",
+      "description": "Current weather and 5-day forecasts for any city using the OpenWeatherMap API.",
+      "capabilities": [
+        "get_current_weather",
+        "get_weather_forecast"
+      ],
+      "category": "weather",
+      "tags": [
+        "weather",
+        "forecast",
+        "temperature",
+        "climate",
+        "openweather"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-openweather",
+        "args": [],
+        "env_required": [
+          {
+            "key": "OPENWEATHER_API_KEY",
+            "description": "OpenWeatherMap API key (free tier works)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "description": "Query and manage Salesforce objects — leads, contacts, accounts, opportunities, cases via SOQL and REST API.",
+      "capabilities": [
+        "salesforce_query",
+        "salesforce_get_record",
+        "salesforce_create_record",
+        "salesforce_update_record",
+        "salesforce_list_objects",
+        "salesforce_describe_object",
+        "salesforce_search"
+      ],
+      "category": "crm",
+      "tags": [
+        "salesforce",
+        "crm",
+        "leads",
+        "opportunities",
+        "soql"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-salesforce",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SALESFORCE_INSTANCE_URL",
+            "description": "Salesforce instance URL (e.g. https://mycompany.salesforce.com)"
+          },
+          {
+            "key": "SALESFORCE_ACCESS_TOKEN",
+            "description": "Salesforce OAuth access token"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "everart",
+      "name": "EverArt",
+      "description": "Generate AI images using EverArt's image generation API. Create artwork, illustrations, and visual assets.",
+      "capabilities": [
+        "everart_generate_image",
+        "everart_list_models"
+      ],
+      "category": "ai",
+      "tags": [
+        "image",
+        "ai",
+        "generation",
+        "art",
+        "visual",
+        "dalle",
+        "stable-diffusion"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-everart",
+        "args": [],
+        "env_required": [
+          {
+            "key": "EVERART_API_KEY",
+            "description": "EverArt API key (everart.ai)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/everart",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "description": "AI-powered search and summarisation using Perplexity's Sonar API. Returns cited, up-to-date answers.",
+      "capabilities": [
+        "perplexity_search",
+        "perplexity_ask"
+      ],
+      "category": "search",
+      "tags": [
+        "perplexity",
+        "search",
+        "ai",
+        "research",
+        "citations"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-perplexity",
+        "args": [],
+        "env_required": [
+          {
+            "key": "PERPLEXITY_API_KEY",
+            "description": "Perplexity API key (perplexity.ai/settings/api)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/tanigami/mcp-server-perplexity",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "datadog",
+      "name": "Datadog",
+      "description": "Query Datadog metrics, logs, monitors, dashboards, and incidents for observability and alerting.",
+      "capabilities": [
+        "datadog_query_metrics",
+        "datadog_query_logs",
+        "datadog_list_monitors",
+        "datadog_get_monitor",
+        "datadog_list_dashboards",
+        "datadog_list_incidents",
+        "datadog_get_host_map"
+      ],
+      "category": "observability",
+      "tags": [
+        "datadog",
+        "metrics",
+        "logs",
+        "monitoring",
+        "alerting",
+        "apm"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-datadog",
+        "args": [],
+        "env_required": [
+          {
+            "key": "DD_API_KEY",
+            "description": "Datadog API key (app.datadoghq.com/organization-settings/api-keys)"
+          },
+          {
+            "key": "DD_APP_KEY",
+            "description": "Datadog application key"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "DD_SITE",
+            "description": "Datadog site (default: datadoghq.com)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/pab1it0/datadog-mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions",
+      "description": "Trigger, monitor, and inspect GitHub Actions workflow runs, jobs, and artifacts.",
+      "capabilities": [
+        "actions_list_workflows",
+        "actions_list_runs",
+        "actions_get_run",
+        "actions_trigger_workflow",
+        "actions_get_run_logs",
+        "actions_list_jobs",
+        "actions_list_artifacts",
+        "actions_cancel_run"
+      ],
+      "category": "development",
+      "tags": [
+        "github",
+        "actions",
+        "ci",
+        "cd",
+        "automation",
+        "workflows"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-github-actions",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+            "description": "GitHub token with workflow scope"
+          },
+          {
+            "key": "GITHUB_OWNER",
+            "description": "Repository owner (user or org name)"
+          },
+          {
+            "key": "GITHUB_REPO",
+            "description": "Repository name"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/ko1ynnky/github-actions-mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "everything",
+      "name": "Everything (Test Server)",
+      "description": "Reference MCP server for testing. Exposes all MCP primitive types: tools, resources, prompts, sampling.",
+      "capabilities": [
+        "echo",
+        "add",
+        "long_running_operation",
+        "sample_llm",
+        "get_tiny_image"
+      ],
+      "category": "testing",
+      "tags": [
+        "test",
+        "demo",
+        "reference",
+        "development"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-everything",
+        "args": [],
+        "env_required": [],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/everything",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "tavily",
+      "name": "Tavily Search",
+      "description": "AI-native web search API designed for LLM agents. Returns clean, relevant search results with optional content extraction — no scraping needed.",
+      "capabilities": [
+        "tavily_search",
+        "tavily_extract"
+      ],
+      "category": "search",
+      "tags": [
+        "search",
+        "web",
+        "ai",
+        "tavily",
+        "research",
+        "rag"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "tavily-mcp",
+        "args": [],
+        "env_required": [
+          {
+            "key": "TAVILY_API_KEY",
+            "description": "Tavily API key — get one free at https://tavily.com"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/tavily-ai/tavily-mcp",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "exa",
+      "name": "Exa Search",
+      "description": "Semantic and keyword web search with full content retrieval. Returns high-quality results from a neural search engine — ideal for research and RAG pipelines.",
+      "capabilities": [
+        "exa_search",
+        "exa_find_similar",
+        "exa_get_contents"
+      ],
+      "category": "search",
+      "tags": [
+        "search",
+        "semantic",
+        "web",
+        "exa",
+        "research",
+        "rag",
+        "neural"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@exa-labs/exa-mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "EXA_API_KEY",
+            "description": "Exa API key — get one at https://exa.ai"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/exa-labs/exa-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "neon",
+      "name": "Neon (Serverless Postgres)",
+      "description": "Manage Neon serverless PostgreSQL projects, branches, and databases. Run SQL queries, manage connection strings, and create/delete branches for dev workflows.",
+      "capabilities": [
+        "neon_query",
+        "neon_create_branch",
+        "neon_delete_branch",
+        "neon_list_projects",
+        "neon_run_sql"
+      ],
+      "category": "database",
+      "tags": [
+        "database",
+        "postgres",
+        "serverless",
+        "neon",
+        "sql",
+        "cloud"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@neondatabase/mcp-server-neon",
+        "args": [],
+        "env_required": [
+          {
+            "key": "NEON_API_KEY",
+            "description": "Neon API key — get one at https://neon.tech/docs/manage/api-keys"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/neondatabase/mcp-server-neon",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "qdrant",
+      "name": "Qdrant",
+      "description": "Vector database for AI applications. Store, search, and manage high-dimensional vectors with payloads. Supports similarity search, filtering, and collections management.",
+      "capabilities": [
+        "qdrant_find",
+        "qdrant_store",
+        "qdrant_delete",
+        "qdrant_list_collections"
+      ],
+      "category": "database",
+      "tags": [
+        "vector",
+        "database",
+        "embeddings",
+        "similarity",
+        "qdrant",
+        "ai",
+        "rag"
+      ],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-qdrant",
+        "args": [],
+        "env_required": [
+          {
+            "key": "QDRANT_URL",
+            "description": "Qdrant instance URL e.g. http://localhost:6333 or your Qdrant Cloud URL"
+          },
+          {
+            "key": "QDRANT_API_KEY",
+            "description": "Qdrant API key (required for Qdrant Cloud, optional for local)"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "COLLECTION_NAME",
+            "description": "Default collection name (default: mcp)"
+          },
+          {
+            "key": "EMBEDDING_MODEL",
+            "description": "Embedding model to use (default: sentence-transformers/all-MiniLM-L6-v2)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/qdrant/mcp-server-qdrant",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "weaviate",
+      "name": "Weaviate",
+      "description": "AI-native vector database. Semantic search, hybrid search, and object storage with multi-modal support. Integrates with OpenAI, Cohere, and Hugging Face embeddings.",
+      "capabilities": [
+        "weaviate_query",
+        "weaviate_insert",
+        "weaviate_delete",
+        "weaviate_schema"
+      ],
+      "category": "database",
+      "tags": [
+        "vector",
+        "database",
+        "semantic",
+        "weaviate",
+        "ai",
+        "embeddings",
+        "rag"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@weaviate/mcp-server-weaviate",
+        "args": [],
+        "env_required": [
+          {
+            "key": "WEAVIATE_URL",
+            "description": "Weaviate instance URL e.g. https://your-cluster.weaviate.network"
+          },
+          {
+            "key": "WEAVIATE_API_KEY",
+            "description": "Weaviate API key (required for Weaviate Cloud)"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "OPENAI_API_KEY",
+            "description": "OpenAI key for text2vec-openai vectoriser (optional)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/weaviate/mcp-server-weaviate",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "upstash",
+      "name": "Upstash (Redis + Vector + QStash)",
+      "description": "Serverless Redis, Vector, and QStash message queue from Upstash. Low-latency key-value store, vector similarity search, and HTTP-based message queuing.",
+      "capabilities": [
+        "upstash_redis_get",
+        "upstash_redis_set",
+        "upstash_vector_query",
+        "upstash_qstash_publish"
+      ],
+      "category": "database",
+      "tags": [
+        "redis",
+        "vector",
+        "serverless",
+        "upstash",
+        "queue",
+        "cache",
+        "cloud"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@upstash/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "UPSTASH_REDIS_REST_URL",
+            "description": "Upstash Redis REST URL — from https://console.upstash.com"
+          },
+          {
+            "key": "UPSTASH_REDIS_REST_TOKEN",
+            "description": "Upstash Redis REST token"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "UPSTASH_VECTOR_REST_URL",
+            "description": "Upstash Vector REST URL (for vector search)"
+          },
+          {
+            "key": "UPSTASH_VECTOR_REST_TOKEN",
+            "description": "Upstash Vector REST token"
+          }
+        ]
+      },
+      "source_url": "https://github.com/upstash/mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "description": "Send transactional and marketing emails via the Resend API. Manage domains, audiences, contacts, and email templates.",
+      "capabilities": [
+        "resend_send_email",
+        "resend_list_emails",
+        "resend_get_email",
+        "resend_cancel_email"
+      ],
+      "category": "communication",
+      "tags": [
+        "email",
+        "transactional",
+        "resend",
+        "send",
+        "marketing"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "resend-mcp",
+        "args": [],
+        "env_required": [
+          {
+            "key": "RESEND_API_KEY",
+            "description": "Resend API key — get one at https://resend.com/api-keys"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/resend/resend-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "telegram",
+      "name": "Telegram",
+      "description": "Send and receive Telegram messages, manage chats, and interact with bots via the Telegram Bot API.",
+      "capabilities": [
+        "telegram_send_message",
+        "telegram_get_updates",
+        "telegram_get_chat",
+        "telegram_send_photo"
+      ],
+      "category": "communication",
+      "tags": [
+        "telegram",
+        "messaging",
+        "bot",
+        "chat",
+        "notifications"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-telegram",
+        "args": [],
+        "env_required": [
+          {
+            "key": "TELEGRAM_BOT_TOKEN",
+            "description": "Telegram Bot token — create a bot via @BotFather at https://t.me/BotFather"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "TELEGRAM_CHAT_ID",
+            "description": "Default chat ID to send messages to"
+          }
+        ]
+      },
+      "source_url": "https://github.com/sparfenyuk/mcp-telegram",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "obsidian",
+      "name": "Obsidian",
+      "description": "Read, write, and search notes in an Obsidian vault via the Local REST API plugin. Create, update, and link notes; query with Dataview; run templates.",
+      "capabilities": [
+        "obsidian_get_note",
+        "obsidian_create_note",
+        "obsidian_update_note",
+        "obsidian_search",
+        "obsidian_list_files"
+      ],
+      "category": "productivity",
+      "tags": [
+        "obsidian",
+        "notes",
+        "knowledge",
+        "markdown",
+        "pkm",
+        "vault"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-obsidian",
+        "args": [],
+        "env_required": [
+          {
+            "key": "OBSIDIAN_API_KEY",
+            "description": "Obsidian Local REST API key — install the Local REST API community plugin first"
+          },
+          {
+            "key": "OBSIDIAN_HOST",
+            "description": "Obsidian REST API host e.g. https://127.0.0.1:27124"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/MarkusMcNugen/mcp-obsidian",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "todoist",
+      "name": "Todoist",
+      "description": "Manage tasks, projects, labels, and filters in Todoist. Create, complete, and organise tasks; query by project or due date.",
+      "capabilities": [
+        "todoist_get_tasks",
+        "todoist_create_task",
+        "todoist_update_task",
+        "todoist_close_task",
+        "todoist_get_projects"
+      ],
+      "category": "productivity",
+      "tags": [
+        "todoist",
+        "tasks",
+        "productivity",
+        "todo",
+        "projects",
+        "gtd"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@doist/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "TODOIST_API_TOKEN",
+            "description": "Todoist API token — get one at https://todoist.com/prefs/integrations"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/doist/mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "description": "Run SQL queries, explore schemas, manage warehouses, and interact with Snowflake data cloud. Supports SELECT, DDL, and DML operations.",
+      "capabilities": [
+        "snowflake_query",
+        "snowflake_list_databases",
+        "snowflake_list_schemas",
+        "snowflake_list_tables",
+        "snowflake_describe_table"
+      ],
+      "category": "database",
+      "tags": [
+        "snowflake",
+        "database",
+        "sql",
+        "data",
+        "warehouse",
+        "cloud",
+        "analytics"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@snowflakedb/mcp-server-snowflake",
+        "args": [],
+        "env_required": [
+          {
+            "key": "SNOWFLAKE_ACCOUNT",
+            "description": "Snowflake account identifier e.g. myorg-myaccount"
+          },
+          {
+            "key": "SNOWFLAKE_USERNAME",
+            "description": "Snowflake username"
+          },
+          {
+            "key": "SNOWFLAKE_PASSWORD",
+            "description": "Snowflake password"
+          },
+          {
+            "key": "SNOWFLAKE_DATABASE",
+            "description": "Default database name"
+          },
+          {
+            "key": "SNOWFLAKE_WAREHOUSE",
+            "description": "Snowflake virtual warehouse name"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "SNOWFLAKE_SCHEMA",
+            "description": "Default schema (default: PUBLIC)"
+          },
+          {
+            "key": "SNOWFLAKE_ROLE",
+            "description": "Snowflake role to use"
+          }
+        ]
+      },
+      "source_url": "https://github.com/snowflakedb/mcp-server-snowflake",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "description": "Query dashboards, panels, and data sources from Grafana. Search and retrieve dashboard JSON, execute data source queries, and manage alerts.",
+      "capabilities": [
+        "grafana_list_dashboards",
+        "grafana_get_dashboard",
+        "grafana_query_datasource",
+        "grafana_list_alerts"
+      ],
+      "category": "observability",
+      "tags": [
+        "grafana",
+        "monitoring",
+        "dashboards",
+        "metrics",
+        "observability",
+        "alerts"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@grafana/mcp-grafana",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GRAFANA_URL",
+            "description": "Grafana instance URL e.g. http://localhost:3000"
+          },
+          {
+            "key": "GRAFANA_API_KEY",
+            "description": "Grafana service account token or API key"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/grafana/mcp-grafana",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "pagerduty",
+      "name": "PagerDuty",
+      "description": "Manage incidents, on-call schedules, and services in PagerDuty. Trigger, acknowledge, and resolve incidents; query on-call schedules and escalation policies.",
+      "capabilities": [
+        "pagerduty_list_incidents",
+        "pagerduty_get_incident",
+        "pagerduty_create_incident",
+        "pagerduty_resolve_incident",
+        "pagerduty_list_services"
+      ],
+      "category": "observability",
+      "tags": [
+        "pagerduty",
+        "incidents",
+        "oncall",
+        "alerting",
+        "devops",
+        "sre"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@pagerduty/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "PAGERDUTY_API_TOKEN",
+            "description": "PagerDuty REST API token — create one at Account Settings > API Access"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "PAGERDUTY_SERVICE_ID",
+            "description": "Default service ID for incident creation"
+          }
+        ]
+      },
+      "source_url": "https://github.com/PagerDuty/mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "zendesk",
+      "name": "Zendesk",
+      "description": "Manage support tickets, users, and organisations in Zendesk. Create, update, and query tickets; search the help centre; manage macros and views.",
+      "capabilities": [
+        "zendesk_list_tickets",
+        "zendesk_get_ticket",
+        "zendesk_create_ticket",
+        "zendesk_update_ticket",
+        "zendesk_search"
+      ],
+      "category": "crm",
+      "tags": [
+        "zendesk",
+        "support",
+        "tickets",
+        "helpdesk",
+        "customer",
+        "crm"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@zendesk/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "ZENDESK_SUBDOMAIN",
+            "description": "Your Zendesk subdomain e.g. mycompany (from mycompany.zendesk.com)"
+          },
+          {
+            "key": "ZENDESK_EMAIL",
+            "description": "Agent email address"
+          },
+          {
+            "key": "ZENDESK_API_TOKEN",
+            "description": "Zendesk API token — generate one at Admin > Channels > API"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/zendesk/mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "posthog",
+      "name": "PostHog",
+      "description": "Query product analytics data from PostHog. Run HogQL queries, retrieve event trends, funnel analysis, user properties, and feature flag status.",
+      "capabilities": [
+        "posthog_query",
+        "posthog_get_trends",
+        "posthog_get_funnel",
+        "posthog_list_feature_flags"
+      ],
+      "category": "analytics",
+      "tags": [
+        "posthog",
+        "analytics",
+        "product",
+        "events",
+        "funnels",
+        "feature-flags"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@posthog/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "POSTHOG_API_KEY",
+            "description": "PostHog personal API key — create one at Settings > Personal API Keys"
+          },
+          {
+            "key": "POSTHOG_HOST",
+            "description": "PostHog host URL e.g. https://app.posthog.com or your self-hosted URL"
+          },
+          {
+            "key": "POSTHOG_PROJECT_ID",
+            "description": "PostHog project ID (found in Project Settings)"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/PostHog/mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "mixpanel",
+      "name": "Mixpanel",
+      "description": "Query Mixpanel product analytics. Run JQL queries, retrieve event data, segmentation, funnels, and user profile information.",
+      "capabilities": [
+        "mixpanel_query_events",
+        "mixpanel_get_segmentation",
+        "mixpanel_get_funnels",
+        "mixpanel_get_user"
+      ],
+      "category": "analytics",
+      "tags": [
+        "mixpanel",
+        "analytics",
+        "product",
+        "events",
+        "tracking",
+        "funnels"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-mixpanel",
+        "args": [],
+        "env_required": [
+          {
+            "key": "MIXPANEL_PROJECT_TOKEN",
+            "description": "Mixpanel project token — found in Project Settings"
+          },
+          {
+            "key": "MIXPANEL_SERVICE_ACCOUNT_USERNAME",
+            "description": "Mixpanel service account username"
+          },
+          {
+            "key": "MIXPANEL_SERVICE_ACCOUNT_PASSWORD",
+            "description": "Mixpanel service account secret"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "MIXPANEL_PROJECT_ID",
+            "description": "Mixpanel project ID"
+          }
+        ]
+      },
+      "source_url": "https://github.com/mixpanel/mcp-server-mixpanel",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "intercom",
+      "name": "Intercom",
+      "description": "Manage customer conversations, contacts, and companies in Intercom. Search conversations, send messages, update contact attributes, and retrieve help articles.",
+      "capabilities": [
+        "intercom_list_conversations",
+        "intercom_get_conversation",
+        "intercom_send_message",
+        "intercom_search_contacts",
+        "intercom_list_articles"
+      ],
+      "category": "crm",
+      "tags": [
+        "intercom",
+        "support",
+        "chat",
+        "crm",
+        "customer",
+        "messaging",
+        "helpdesk"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@intercom/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "INTERCOM_ACCESS_TOKEN",
+            "description": "Intercom access token — create one at Settings > Integrations > Developer Hub"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/intercom/mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify",
+      "description": "Deploy sites, manage functions, environment variables, and DNS via the Netlify API. Trigger builds, list deploys, and manage team members.",
+      "capabilities": [
+        "netlify_list_sites",
+        "netlify_get_site",
+        "netlify_trigger_build",
+        "netlify_list_deploys",
+        "netlify_get_deploy"
+      ],
+      "category": "cloud",
+      "tags": [
+        "netlify",
+        "deploy",
+        "hosting",
+        "jamstack",
+        "cdn",
+        "serverless"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@netlify/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "NETLIFY_ACCESS_TOKEN",
+            "description": "Netlify personal access token — create one at User Settings > Applications"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/netlify/netlify-mcp",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "linear-extended",
+      "name": "Linear (Extended)",
+      "description": "Full Linear project management integration — issues, cycles, projects, teams, labels, and comments. Richer capability set than the base Linear server.",
+      "capabilities": [
+        "linear_get_issue",
+        "linear_create_issue",
+        "linear_update_issue",
+        "linear_list_teams",
+        "linear_list_projects",
+        "linear_create_comment",
+        "linear_get_cycles"
+      ],
+      "category": "productivity",
+      "tags": [
+        "linear",
+        "issues",
+        "project-management",
+        "agile",
+        "cycles",
+        "teams"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@linear/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "LINEAR_API_KEY",
+            "description": "Linear API key — create one at Settings > API > Personal API keys"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/linear/linear-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "anthropic-claude",
+      "name": "Anthropic Claude",
+      "description": "Call Claude models directly from within workflows. Supports text generation, structured output, vision, and tool use — useful for LLM-as-a-tool patterns.",
+      "capabilities": [
+        "claude_complete",
+        "claude_vision",
+        "claude_structured_output"
+      ],
+      "category": "ai",
+      "tags": [
+        "anthropic",
+        "claude",
+        "llm",
+        "ai",
+        "generation",
+        "vision",
+        "tool-use"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@anthropic-ai/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "ANTHROPIC_API_KEY",
+            "description": "Anthropic API key — get one at https://console.anthropic.com/settings/keys"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "ANTHROPIC_MODEL",
+            "description": "Model to use (default: claude-sonnet-4-6)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/anthropics/anthropic-mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "openai-extended",
+      "name": "OpenAI (Extended)",
+      "description": "Access OpenAI's full API — GPT-4o, DALL-E 3, Whisper, TTS, embeddings, fine-tuning, and the Assistants API. Richer than the base OpenAI server.",
+      "capabilities": [
+        "openai_chat",
+        "openai_image_generate",
+        "openai_transcribe",
+        "openai_embed",
+        "openai_tts"
+      ],
+      "category": "ai",
+      "tags": [
+        "openai",
+        "gpt",
+        "dalle",
+        "whisper",
+        "embeddings",
+        "ai",
+        "llm"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@openai/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "OPENAI_API_KEY",
+            "description": "OpenAI API key — get one at https://platform.openai.com/api-keys"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "OPENAI_ORG_ID",
+            "description": "OpenAI organisation ID (optional)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/openai/openai-mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "google-bigquery",
+      "name": "Google BigQuery",
+      "description": "Run SQL queries against Google BigQuery data warehouse. List datasets and tables, execute queries, and retrieve job results.",
+      "capabilities": [
+        "bigquery_query",
+        "bigquery_list_datasets",
+        "bigquery_list_tables",
+        "bigquery_get_table_schema"
+      ],
+      "category": "database",
+      "tags": [
+        "bigquery",
+        "google",
+        "database",
+        "sql",
+        "data-warehouse",
+        "analytics",
+        "gcp"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@google-cloud/mcp-server-bigquery",
+        "args": [],
+        "env_required": [
+          {
+            "key": "GOOGLE_APPLICATION_CREDENTIALS",
+            "description": "Path to GCP service account JSON key file"
+          },
+          {
+            "key": "BIGQUERY_PROJECT_ID",
+            "description": "GCP project ID that contains your BigQuery datasets"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "BIGQUERY_LOCATION",
+            "description": "BigQuery processing location (default: US)"
+          }
+        ]
+      },
+      "source_url": "https://github.com/googleapis/mcp-server-bigquery",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "notion-extended",
+      "name": "Notion (Extended)",
+      "description": "Full Notion API integration — pages, databases, blocks, and search. Create rich content, query databases with filters, and manage workspace structure.",
+      "capabilities": [
+        "notion_search",
+        "notion_get_page",
+        "notion_create_page",
+        "notion_update_page",
+        "notion_query_database",
+        "notion_append_block"
+      ],
+      "category": "productivity",
+      "tags": [
+        "notion",
+        "notes",
+        "docs",
+        "database",
+        "pages",
+        "knowledge",
+        "wiki"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@notionhq/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "NOTION_API_KEY",
+            "description": "Notion internal integration token — create one at https://www.notion.so/my-integrations"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/makenotion/notion-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "box",
+      "name": "Box",
+      "description": "Manage files, folders, and users in Box cloud storage. Upload, download, search, share, and collaborate on content.",
+      "capabilities": [
+        "box_list_folder",
+        "box_get_file",
+        "box_upload_file",
+        "box_search",
+        "box_share_item",
+        "box_get_user"
+      ],
+      "category": "productivity",
+      "tags": [
+        "box",
+        "storage",
+        "files",
+        "cloud",
+        "collaboration",
+        "enterprise"
+      ],
+      "install": {
+        "type": "npx",
+        "package": "@box/mcp-server",
+        "args": [],
+        "env_required": [
+          {
+            "key": "BOX_CLIENT_ID",
+            "description": "Box application client ID"
+          },
+          {
+            "key": "BOX_CLIENT_SECRET",
+            "description": "Box application client secret"
+          },
+          {
+            "key": "BOX_ACCESS_TOKEN",
+            "description": "Box developer token or OAuth2 access token"
+          }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/box/mcp-server-box",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "skill-filesystem",
+      "name": "Filesystem Agent",
+      "description": "Read, write, search and manage files. Sandboxed to configured allowed paths. Supports path traversal protection and configurable max file size.",
+      "tags": [
+        "files",
+        "storage",
+        "io",
+        "filesystem",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "read_file",
+        "write_file",
+        "append_file",
+        "delete_file",
+        "move_file",
+        "copy_file",
+        "list_directory",
+        "create_directory",
+        "delete_directory",
+        "get_file_info",
+        "search_files"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/filesystem-agent:latest",
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "FS_ALLOWED_PATHS",
+            "description": "Newline or comma-separated list of allowed base directories (default: /data)"
+          },
+          {
+            "key": "FS_MAX_FILE_SIZE_MB",
+            "description": "Max file read size in MB (default: 10)"
+          },
+          {
+            "key": "FS_ALLOW_DELETE",
+            "description": "Allow delete operations: true/false (default: true)"
+          }
+        ],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/filesystem-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-browser",
+      "name": "Browser Agent",
+      "description": "Full Playwright-powered browser automation. Browse any URL, interact with pages, take screenshots, extract text, fill forms, and click elements. Requires an LLM (via proxy or direct key).",
+      "tags": [
+        "browser",
+        "web",
+        "automation",
+        "playwright",
+        "scraping",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "browse_web"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/browser-agent:latest",
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "LLM_PROXY_URL",
+            "description": "Orchestrator LLM proxy endpoint (injected automatically when proxy enforce is on)"
+          },
+          {
+            "key": "ANTHROPIC_API_KEY",
+            "description": "Anthropic API key (used when LLM proxy is not enforced)"
+          }
+        ],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/browser-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-code-execution",
+      "name": "Code Execution Agent",
+      "description": "Sandboxed multi-language code execution (Python, JavaScript, Bash, Ruby, Go). 9-layer security model: kill switch, language allowlist, blocked modules, AST analysis, subprocess isolation, env scrub, timeout, output cap, and POSIX resource limits.",
+      "tags": [
+        "code",
+        "execution",
+        "sandbox",
+        "python",
+        "javascript",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "execute_code",
+        "run_script",
+        "list_runtimes"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/code-execution-agent:latest",
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "CODE_EXEC_ENABLED",
+            "description": "Master kill switch: true/false (default: true)"
+          },
+          {
+            "key": "CODE_EXEC_ALLOWED_LANGUAGES",
+            "description": "Comma-separated list: python,javascript,bash (default: python)"
+          },
+          {
+            "key": "CODE_EXEC_TIMEOUT_S",
+            "description": "Max execution time in seconds (default: 30)"
+          }
+        ],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/code-execution-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-web-search",
+      "name": "Web Search Agent",
+      "description": "Multi-mode search powered by Serper.dev. Supports web, news, images, shopping, academic (scholar), patents, places/maps, videos, and autocomplete. Returns structured results with titles, snippets, and URLs.",
+      "tags": [
+        "search",
+        "web",
+        "news",
+        "serper",
+        "google",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "serper_search",
+        "serper_news",
+        "serper_images",
+        "serper_shopping",
+        "serper_scholar",
+        "serper_patents",
+        "serper_places",
+        "serper_videos",
+        "serper_autocomplete"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/serper-search-agent:latest",
+        "env_required": [
+          {
+            "key": "SERPER_API_KEY",
+            "description": "Serper.dev API key — get one free at https://serper.dev"
+          }
+        ],
+        "env_optional": [],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/serper-search-agent",
+      "version": "2.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-research",
+      "name": "Research Agent",
+      "description": "Deep-dive research agent. Given a topic, searches multiple sources, synthesises findings, and returns a structured report. Uses Serper for search and an LLM for synthesis.",
+      "tags": [
+        "research",
+        "synthesis",
+        "report",
+        "search",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "research_topic"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/research-agent:latest",
+        "env_required": [
+          {
+            "key": "SERPER_API_KEY",
+            "description": "Serper.dev API key for web search"
+          }
+        ],
+        "env_optional": [
+          {
+            "key": "LLM_PROXY_URL",
+            "description": "Orchestrator LLM proxy endpoint"
+          },
+          {
+            "key": "ANTHROPIC_API_KEY",
+            "description": "Anthropic API key (direct mode)"
+          }
+        ],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/research-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-document",
+      "name": "Document Extraction Agent",
+      "description": "Extract text and structured fields from PDFs, scanned images, and office documents. Local-only mode (no data leaves your machine) and AI-assisted mode (sends text to LLM for field extraction). Supports OCR via EasyOCR.",
+      "tags": [
+        "pdf",
+        "ocr",
+        "document",
+        "extraction",
+        "invoice",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "extract_document",
+        "convert_to_text",
+        "list_supported_formats"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/document-agent:latest",
+        "env_required": [],
+        "env_optional": [
+          {
+            "key": "DOC_ALLOWED_PATHS",
+            "description": "Allowed document directories (default: /data)"
+          },
+          {
+            "key": "DOC_AI_ENABLED",
+            "description": "Enable AI-assisted extraction: true/false (default: false)"
+          },
+          {
+            "key": "LLM_PROXY_URL",
+            "description": "Orchestrator LLM proxy endpoint (for AI mode)"
+          }
+        ],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/document-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-task-scheduler",
+      "name": "Task Scheduler Agent",
+      "description": "Cron-based task scheduling for the orchestrator. Schedule, list, update, and cancel recurring or one-shot tasks. Tasks are forwarded as capability calls to other agents via the orchestrator.",
+      "tags": [
+        "scheduler",
+        "cron",
+        "automation",
+        "recurring",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "schedule_task",
+        "get_task",
+        "list_scheduled_tasks",
+        "update_scheduled_task",
+        "cancel_scheduled_task",
+        "delete_task",
+        "validate_cron",
+        "get_task_status"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/task-scheduler-agent:latest",
+        "env_required": [],
+        "env_optional": [],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/task-scheduler-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-telegram",
+      "name": "Telegram Agent",
+      "description": "Telegram bot integration. Send messages, photos, and documents to any chat or channel. Poll for updates and relay incoming messages to the orchestrator for reply workflows.",
+      "tags": [
+        "telegram",
+        "messaging",
+        "bot",
+        "notifications",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "send_message",
+        "send_photo",
+        "get_updates",
+        "get_chat_info"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/telegram-agent:latest",
+        "env_required": [
+          {
+            "key": "TELEGRAM_BOT_TOKEN",
+            "description": "Telegram Bot Token from @BotFather"
+          }
+        ],
+        "env_optional": [],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/telegram-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    {
+      "id": "skill-slack",
+      "name": "Slack Agent",
+      "description": "Slack integration for the orchestrator. Send messages to channels, post DMs, list channels, and react to incoming Slack events. Uses Socket Mode — no public URL needed.",
+      "tags": [
+        "slack",
+        "messaging",
+        "notifications",
+        "team",
+        "skill"
+      ],
+      "categories": [
+        "Skills & Agents"
+      ],
+      "capabilities": [
+        "send_slack_message"
+      ],
+      "install": {
+        "type": "docker",
+        "package": "ghcr.io/zyb-os/slack-connector-agent:latest",
+        "env_required": [
+          {
+            "key": "SLACK_BOT_TOKEN",
+            "description": "Slack Bot User OAuth Token (xoxb-...)"
+          },
+          {
+            "key": "SLACK_APP_TOKEN",
+            "description": "Slack App-Level Token for Socket Mode (xapp-...)"
+          }
+        ],
+        "env_optional": [],
+        "args": [
+          "--add-host",
+          "host.docker.internal:host-gateway"
+        ]
+      },
+      "source_url": "https://github.com/zyb-os/slack-connector-agent",
+      "version": "1.0.0",
+      "license": "MIT"
+    }
+  ],
+  "count": 88
+}

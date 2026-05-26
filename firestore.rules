@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── MCP server catalog — public read, admin write only ─────────────────
+    match /mcp_servers/{serverId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid in [
+        // Add Firebase UIDs of admin users here
+        // e.g. "UID_FROM_FIREBASE_CONSOLE"
+      ];
+    }
+
+    // ── Categories — public read ────────────────────────────────────────────
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ── Everything else — deny ──────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
