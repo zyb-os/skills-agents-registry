@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "version": "2.0.0",
-  "updatedAt": "2026-05-25T00:00:00Z",
+  "updatedAt": "2026-05-27T00:00:00Z",
   "registryUrl": "https://zybos-registry.web.app",
   "servers": [
     {
@@ -6356,6 +6356,170 @@
             {
               "name": "SLACK_APP_TOKEN",
               "description": "Slack App-Level Token for Socket Mode (xapp-...)",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ],
+          "runtimeArguments": [
+            {
+              "type": "named",
+              "name": "--add-host"
+            },
+            {
+              "type": "positional",
+              "value": "host.docker.internal:host-gateway"
+            }
+          ],
+          "runtimeHint": "docker"
+        }
+      ]
+    },
+    {
+      "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+      "name": "io.github.zyb-os/youtube",
+      "title": "YouTube Agent",
+      "description": "Search YouTube videos, fetch full transcripts/captions, and retrieve video metadata (title, channel, duration, views). search_youtube and get_video_info require a Google YouTube Data API v3 key. get_video_transcript works without any API key.",
+      "version": "1.0.0",
+      "isVerified": false,
+      "category": "media",
+      "tags": [
+        "youtube",
+        "video",
+        "search",
+        "transcript",
+        "captions",
+        "media",
+        "google",
+        "skill"
+      ],
+      "tools": [
+        {
+          "name": "search_youtube",
+          "description": "Search YouTube by keyword — returns title, channel, URL, publish date, and description for up to 50 results."
+        },
+        {
+          "name": "get_video_transcript",
+          "description": "Fetch the full transcript/captions of any YouTube video. No API key required."
+        },
+        {
+          "name": "get_video_info",
+          "description": "Retrieve video metadata: title, channel, duration, view count, like count, tags, and thumbnail URL."
+        }
+      ],
+      "repository": {
+        "url": "https://github.com/zyb-os/youtube-agent",
+        "source": "github",
+        "id": "zyb-os/youtube-agent"
+      },
+      "websiteUrl": "https://github.com/zyb-os/youtube-agent",
+      "packages": [
+        {
+          "registryType": "oci",
+          "identifier": "ghcr.io/zyb-os/youtube-agent:latest",
+          "version": "1.0.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "name": "YOUTUBE_API_KEY",
+              "description": "Google Cloud API key with YouTube Data API v3 enabled (console.cloud.google.com). Required for search_youtube and get_video_info; get_video_transcript works without it.",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ],
+          "runtimeArguments": [
+            {
+              "type": "named",
+              "name": "--add-host"
+            },
+            {
+              "type": "positional",
+              "value": "host.docker.internal:host-gateway"
+            }
+          ],
+          "runtimeHint": "docker"
+        }
+      ]
+    },
+    {
+      "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+      "name": "io.github.zyb-os/heygen",
+      "title": "HeyGen Agent",
+      "description": "AI avatar video generation via the HeyGen v2 API. Create talking-head videos from text scripts using any avatar and voice, list available avatars, voices and templates, poll video status, download completed videos, and check your remaining quota.",
+      "version": "1.0.0",
+      "isVerified": false,
+      "category": "media",
+      "tags": [
+        "heygen",
+        "video",
+        "avatar",
+        "ai-video",
+        "tts",
+        "generation",
+        "media",
+        "skill"
+      ],
+      "tools": [
+        {
+          "name": "create_video",
+          "description": "Create an AI avatar video from a text script."
+        },
+        {
+          "name": "get_video_status",
+          "description": "Poll the rendering status of a video."
+        },
+        {
+          "name": "download_video",
+          "description": "Get the download URL for a completed video."
+        },
+        {
+          "name": "list_videos",
+          "description": "List previously generated videos."
+        },
+        {
+          "name": "delete_video",
+          "description": "Delete a generated video."
+        },
+        {
+          "name": "list_avatars",
+          "description": "List available HeyGen avatars."
+        },
+        {
+          "name": "list_voices",
+          "description": "List available TTS voices."
+        },
+        {
+          "name": "list_templates",
+          "description": "List available video templates."
+        },
+        {
+          "name": "create_video_from_template",
+          "description": "Create a video using a predefined HeyGen template."
+        },
+        {
+          "name": "get_remaining_quota",
+          "description": "Check remaining video generation quota."
+        }
+      ],
+      "repository": {
+        "url": "https://github.com/zyb-os/heygen-agent",
+        "source": "github",
+        "id": "zyb-os/heygen-agent"
+      },
+      "websiteUrl": "https://github.com/zyb-os/heygen-agent",
+      "packages": [
+        {
+          "registryType": "oci",
+          "identifier": "ghcr.io/zyb-os/heygen-agent:latest",
+          "version": "1.0.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "name": "HEYGEN_API_KEY",
+              "description": "HeyGen API key — get one at app.heygen.com/settings/api-tokens",
               "isRequired": true,
               "isSecret": true
             }
